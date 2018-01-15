@@ -11,7 +11,7 @@ import { EventData } from "data/observable";
 let page = require("ui/page").Page; // Needed for global events
 let appversion = require("nativescript-appversion");
 let orientation = require('nativescript-orientation');
-var nativescript = require("nativescript-globalevents");
+require("nativescript-globalevents");
 
 export class TraceRaven {
   private batteryPercent: number;
@@ -66,7 +66,7 @@ export class TraceRaven {
             },
             runtime: {
               name: 'nativescript',
-              version: nativescript.version
+              version: NSObject.version
             }
           }
 

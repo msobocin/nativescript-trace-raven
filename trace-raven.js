@@ -11,7 +11,7 @@ var page_1 = require("ui/page");
 var page = require("ui/page").Page;
 var appversion = require("nativescript-appversion");
 var orientation = require('nativescript-orientation');
-var nativescript = require("nativescript-globalevents");
+require("nativescript-globalevents");
 var TraceRaven = (function () {
     function TraceRaven(dsn, environment, enableAppBreadcrumbs) {
         if (environment === void 0) { environment = "debug"; }
@@ -60,7 +60,7 @@ var TraceRaven = (function () {
                     },
                     runtime: {
                         name: 'nativescript',
-                        version: nativescript.version
+                        version: NSObject.version
                     }
                 };
                 return data;
