@@ -66,7 +66,7 @@ export class TraceRaven {
             },
             runtime: {
               name: 'nativescript',
-              version: NSObject.version
+              version: global.__runtimeVersion
             }
           }
 

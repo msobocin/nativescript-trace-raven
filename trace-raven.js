@@ -60,7 +60,7 @@ var TraceRaven = (function () {
                     },
                     runtime: {
                         name: 'nativescript',
-                        version: NSObject.version
+                        version: global.__runtimeVersion
                     }
                 };
                 return data;
