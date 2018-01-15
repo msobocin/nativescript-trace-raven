@@ -1,4 +1,5 @@
 import Raven = require("raven-js");
+import { RavenOptions } from "raven-js";
 import * as http from "http";
 import * as platform from "platform";
 import * as trace from "trace";
@@ -26,15 +27,18 @@ export class TraceRaven {
     if (typeof(Raven) === "undefined") return; // Do not process if Raven plugin not loaded
 
     // Sentry only recognizes 'info', 'warning' and 'error' ('error' is default)
-    let level = "error";
-    if (type === trace.messageType.log || type === trace.messageType.info) { 
-      level = "info";
-    } else if (type === trace.messageType.warn) { 
-      level = "warning"
-    }
+    let ravenOptions: RavenOptions;
 
-    // Add category as a tag for log
-    Raven.captureMessage(message, { level: level, tags: { trace_category: category } });
+    ravenOptions.level = "error";
+    if (type === trace.messageType.log || type === trace.messageType.info) { 
+      ravenOptions.level = "info";
+    } else if (type === trace.messageType.warn) { 
+      ravenOptions.level = "warning"
+    }
+    
+    ravenOptions.tags = { trace_category: category };
+    // Add category as a tag for lo
+    Raven.captureMessage(message, ravenOptions);
   }
 
   private initRaven(dsn: string, environment: string, enableAppBreadcrumbs: boolean) {
@@ -62,7 +66,7 @@ export class TraceRaven {
             },
             runtime: {
               name: 'nativescript',
-              version: global.__runtimeVersion
+              version: Raven.VERSION
             }
           }
 
@@ -92,7 +96,7 @@ export class TraceRaven {
             .catch((err) => {
               let msg = `Raven Transport Error: ${err}`;
               console.warn(msg);
-              options.onFailure();
+              options.onError(new Error(msg));
             });
         },
       })
