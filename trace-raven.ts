@@ -27,7 +27,7 @@ export class TraceRaven {
     if (typeof(Raven) === "undefined") return; // Do not process if Raven plugin not loaded
 
     // Sentry only recognizes 'info', 'warning' and 'error' ('error' is default)
-    let ravenOptions: RavenOptions;
+    let ravenOptions: RavenOptions = {};
 
     ravenOptions.level = "error";
     if (type === trace.messageType.log || type === trace.messageType.info) { 

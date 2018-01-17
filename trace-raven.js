@@ -24,7 +24,7 @@ var TraceRaven = (function () {
     TraceRaven.prototype.write = function (message, category, type) {
         if (typeof (Raven) === "undefined")
             return;
-        var ravenOptions;
+        var ravenOptions = {};
         ravenOptions.level = "error";
         if (type === trace.messageType.log || type === trace.messageType.info) {
             ravenOptions.level = "info";
