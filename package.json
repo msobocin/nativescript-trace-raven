@@ -1,6 +1,6 @@
 {
   "name": "nativescript-trace-raven",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Custom NativeScript TraceWriter using Raven to write logs to Sentry.io",
   "main": "trace-raven",
   "typings": "index.d.ts",
